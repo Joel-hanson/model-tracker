@@ -1,0 +1,33 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
+{
+	"name": "Development",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"njpwerner.autodocstring"
+			],
+			"settings": {
+				"python.testing.pytestArgs": [
+					"."
+				],
+				"python.jediEnabled": true,
+				"python.formatting.provider": "black",
+				"python.linting.flake8Enabled": true,
+				"python.linting.mypyEnabled": true,
+				"python.linting.pydocstyleEnabled": true,
+				"python.linting.pylintEnabled": false,
+				"autoDocstring.docstringFormat": "numpy",
+				"autoDocstring.guessTypes": false
+			}
+		}
+	},
+	"postCreateCommand": "sh .devcontainer/post-run.sh"
+}

@@ -1,0 +1,68 @@
+version: "3.9"
+services:
+  redis: # This for storing cache
+    image: "redis:alpine"
+    hostname: redis
+    ports:
+      - 6379:6379
+    logging:
+        driver: none
+
+  db:
+    image: postgres:12-alpine
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    env_file:
+      - backend/.env
+    ports:
+      - 5432:5432
+    logging:
+        driver: none
+
+  backend:  # This service that serves the api for regression and classification
+    build: backend
+    entrypoint: ./entrypoint.sh
+    image: app-backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - backend/.env
+    depends_on:
+      - db
+      - redis
+    stdin_open: true # for testing
+    tty: true # for testing
+
+  celery:  # This is the service that runs the background tasks. example: pycaret setup.
+    build: backend
+    command: python manage.py celery
+    image: app-backend
+    volumes:
+      - ./backend:/app
+    env_file:
+      - backend/.env
+    stdin_open: true # for testing
+    tty: true # for testing
+    depends_on:
+      - redis
+      - db
+
+  flower:  # This the service which show the running and stale task information.
+    build: backend
+    command: celery -A backend flower -l INFO --port=5566 --broker=redis://redis:6379/1
+    image: app-backend
+    volumes:
+      - ./backend:/app
+    env_file:
+      - backend/.env
+    ports:
+      - "5566:5566"
+    stdin_open: true # for testing
+    tty: true # for testing
+    depends_on:
+      - redis
+      - celery
+    logging:
+        driver: none
