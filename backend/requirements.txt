@@ -10,3 +10,5 @@ flower==1.2.0 # celery task visualizer
 python-decouple==3.7 # Helper for django and environment variables
 psutil==5.9.4 # process and system utilities
 psycopg2-binary==2.9.5 # PostgreSQL database adapter for the Python
+pandas==1.5.3 # data analysis and manipulation tool
+scikit-learn==1.2.1 # machine learning in Python

@@ -1,0 +1,49 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block content %}
+<div class= "row">
+    <div class="col-sm">
+        <table id="table_db" class="table table-bordered table-hover" style="width: 100%">
+            <thead>
+                <tr>
+                    <th scope="col">Task ID</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Result</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for t in tasks %}
+                <tr>
+                    <td> {{ t.task_id }}</td>
+                    <td> {{ t.status }}</td>
+                    <td> {{ t.result }} </td>
+                </tr>
+            </tbody>
+                {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock content %}
+ 
+{% block js %} <-- page specific scripts
+ 
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+ 
+<script>
+    $(document).ready(function () {
+    $('#table_db').DataTable( {
+        "paging": true,
+        "searching": true,
+        "autoWidth": false,
+        "ordering": true,
+        "columnDefs": [
+            {"width": "50px", "targets": 0},
+            {"width": "250px", "targets": 1},
+        ],
+    }
+    );
+} );
+</script>
+{% endblock js %}

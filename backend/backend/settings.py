@@ -17,7 +17,7 @@ SECRET_KEY = config("SECRET_KEY")
 # debug configures the dev and production setup, False means the project runs in production mode and True means project runs in development mode.
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-# Allowed hosts is the list of hosts to allow hitting the project. 
+# Allowed hosts is the list of hosts to allow hitting the project.
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
 # The django apps and the external apps.
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "celery",
     "rest_framework",
     "common",
+    "registry",
 ]
 
 MIDDLEWARE = [
@@ -144,16 +145,17 @@ BROKER_URL = REDIS_URL
 CELERY_BROKER_URL = REDIS_URL
 CELERY_CACHE_BACKEND = "default"
 CELERY_RESULT_BACKEND = "django-db"
+CELERY_RESULT_EXTENDED = True
 # django setting caches using postgres.
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": REDIS_URL,
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         },
-#     }
-# }
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": REDIS_URL,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
 CELERY_RESULT_PERSISTENT = True
 
 # Storage
