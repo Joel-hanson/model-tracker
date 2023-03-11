@@ -10,5 +10,5 @@ urlpatterns = [
     path("result", ModelResultView.as_view(), name="result"),
     path("admin/", admin.site.urls),
     path("common/", include(common_urls), name="common"),
-    path("model-flow/", include("registry.urls"), name="model-flow"),
+    path("tasks/", include("registry.urls"), name="tasks"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

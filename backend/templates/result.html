@@ -3,13 +3,46 @@
 {% load get_item %}
 
 {% block content %}
-<div class= "row">
-    <div class="col-sm">
+<style type="text/css">
+    .flex {
+        display: flex;
+    }
+    #table_db_wrapper {
+        width: max-content;
+        margin: 0 auto;
+    }
+    .align-items-center {
+        align-items: center;
+    }
+    .justify-content-center {
+        justify-content: center;
+    }
+    .font-weight-light {
+        font-weight: 300;
+    }
+    .font-weight-bold {
+        font-weight: 700;
+    }
+    .font-weight-lighter {
+        font-weight: 200;
+    }
+    .font-weight-normal {
+        font-weight: 400;
+    }
+    .font-color-light-grey {
+        color: #a9a9a9;
+    }
+    .font-color-dark-grey {
+        color: #696969;
+    }
+</style>
+<div class= "row" style="height: 70vh">
+    <div class="col-sm flex align-items-center justify-content-center font-weight-light" style="font-size: 0.8rem">
         <table id="table_db" class="table table-striped table-hover table-bordered compact" style="width: 100%">
             <thead>
                 <tr>
                     {% for key in keys %}
-                        <th scope="col">{{ key | upper }}</th>
+                        <th scope="col" class="font-weight-bold" style="font-size: 0.8rem">{{ key | upper }}</th>
                     {% endfor %}
                 </tr>
             </thead>
@@ -18,7 +51,7 @@
                 {% comment %} print result {% endcomment %}
                 <tr>
                     {% for key in keys %}
-                        <td>{{ result|get_item:key }}</td>
+                        <td class="font-weight-normal font-color-dark-grey" style="font-size: 0.8rem">{{ result|get_item:key }}</td>
                     {% endfor %}
                 </tr>
             </tbody>
@@ -39,7 +72,6 @@
         "paging": true,
         "searching": true,
         "autoWidth": false,
-        "ordering": true,
         "responsive": true,
         "columnDefs": [
             {"width": "50px", "targets": 0},
