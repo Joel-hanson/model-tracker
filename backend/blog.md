@@ -7,12 +7,11 @@ Photo by Ousa Chea on Unsplash(This article is a demonstration of my side proje
 
 ## Introduction
 
-This blog is give you an idea of how can you build something that would help us in keeping track of your ml experiments that we are doing. I came across this idea when I had to working on a project that had to train and deploy machine learning models that uses automl packages and requires minimum amount of effort by a user.
+This blog will show you how to make something that will help us keep track of your machine learning experiments. When I was working on a project that needed to train and deploy machine learning models that use autoML packages and require the least amount of work from a user, I came across this idea.
 
-We would be only going though the experiment tracking part of that project and not the overall model lifecycle. This not intended for use in production, its just a sample project. I recommend using a mlflow for tracking logging and querying experiments.
+We would only look at the part of that project that has to do with tracking experiments, not the whole model lifecycle. This is not meant to be used in production; it's just a sample project. For tracking, logging, and querying experiments, I suggest using a mlflow which is a open source platform to manage the machine learning lifecycle.
 
-This article is intented for user who are already familar with a basic understanding of python and its packages like django and celery. I will be using docker for the project and the like to the project is 
-In the introduction, introduce the topic and explain why it's important. You can also provide some background information to help the reader understand the context of the topic.
+This article is for people who already know the basics about Python and its packages, such as Django and Celery. For the project, I'll be using Docker, and the code for the project is in the github repo.
 
 ## Problem statement
 
@@ -25,7 +24,7 @@ This article showcases how you can use a django Celery project to do end-to-end 
 
 ## Solution
 
-The solution that I have came up with is to make use of the django celery result. So what is django celery result? It is a django app that provides a database backend for storing the results of asynchronous tasks. It is a drop-in replacement for the default database backend that ships with Celery. It is a good idea to use this app if you want to store and query the results of your tasks in the database. 
+The solution that I have came up with is to make use of the django celery result. So what is django celery result? It is a django app that provides a database backend for storing the results of asynchronous tasks. It is a drop-in replacement for the default database backend that ships with Celery. It is a good idea to use this app if you want to store and query the results of your tasks in the database.
 
 The solution will be broken down into the following subsections:
 
@@ -174,7 +173,6 @@ In the entrypoint script. It will apply the database migrations and then start t
     ├── _base.html
     ├── index.html
     └── result.html
-
 ```
 
 The files Makefile, Dockerfile, entrypoint.sh, .env and requirements.txt are located in the backend directory.
@@ -198,8 +196,8 @@ REDIS_URL=redis://redis:6379/0
 The backend directory has the following subdirectories:
 
 1. backend
-1. common
-1. experiment
+2. common
+3. experiment
 
 The backend directory contains the django project files. The common directory contains the celery tasks and the celery worker. The experiment directory contains the models, serializers, views and urls for the project. The experiment directory also contains the django app for the project.
 
@@ -215,7 +213,6 @@ The common directory contains the common code for the project. The experiment di
 1. models: This file contains the models for the app.
 1. serializers: This file contains the serializers for the app.
 1. tests: This file contains the tests for the app.
-
 
 The experiment app has the following subdirectories:
 
@@ -261,7 +258,7 @@ The project can be run by running the following command:
 docker-compose up
 ```
 
-The project can be accessed at http://localhost:8000. The flower can be accessed at http://localhost:5555.
+The project can be accessed at <http://localhost:8000>. The flower can be accessed at <http://localhost:5555>.
 
 You could also run the project without docker. The project can be run by running the following command:
 
@@ -347,12 +344,12 @@ A sample task result is as follows:
 }
 ```
 
-The task list can be found at http://localhost:8000/experiment/wine-quality/tasks/.
+The task list can be found at <http://localhost:8000/experiment/wine-quality/tasks/>.
 
-I have create a html with api's created in the project. The html can be found at http://localhost:8000/results. Also the task list can be found at http://localhost:8000/.
+I have create a html with api's created in the project. The html can be found at <http://localhost:8000/results>. Also the task list can be found at <http://localhost:8000/>.
 
 ## Conclusion
 
 In this article, we have created a django project that can be used to create experiments. The project can be used to task experiments for machine learning models. This can also be used to create experiments for other models, with different hyperparameters, etc... The scope goes on. The results can be stored in the database and can be used for future analysis. The results can be used to create dashboards and visualizations.
 
-The project can be found at https://github.com/Joel-hanson/model-tracker
+The project can be found at <https://github.com/Joel-hanson/model-tracker>
