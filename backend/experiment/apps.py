@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class RegistryConfig(AppConfig):
+class ExperimentConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "registry"
+    name = "experiment"

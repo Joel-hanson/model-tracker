@@ -62,7 +62,7 @@ class ModelFlowViewSet(viewsets.ViewSet):
         url_path="wine-quality/tasks",
     )
     def get_tasks(self, request, *args, **kwargs):
-        tasks = TaskResult.objects.filter(task_name="registry.tasks.wine_quality")
+        tasks = TaskResult.objects.filter(task_name="experiment.tasks.wine_quality")
         return Response(
             [
                 {
@@ -113,7 +113,7 @@ class ModelResultView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        tasks = TaskResult.objects.filter(task_name="registry.tasks.wine_quality")
+        tasks = TaskResult.objects.filter(task_name="experiment.tasks.wine_quality")
         context["results"] = []
         context["keys"] = []
         for task in tasks:

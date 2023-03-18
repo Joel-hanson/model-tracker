@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     "celery",
     "rest_framework",
     "common",
-    "registry",
+    "experiment",
 ]
 
 MIDDLEWARE = [
